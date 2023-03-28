@@ -1,24 +1,31 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './Page/Home/Home';
+import Login from './Page/Login/LoginPage';
 import './App.css';
 
+export function RequireAuth({ children }) {
+    // Used to ensure the refreshToken is called once at a time
+    // TODO Get user from local storage
+    const user = localStorage.getItem('user');
+
+    if (user === null) {
+        //TODO Navigate to login
+        return null;
+    } else {
+        return children;
+    }
+}
+
 function App() {
+
+//Navigation dans requireAuth
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<RequireAuth><Home /></RequireAuth>} />
+            <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
   );
 }
 
