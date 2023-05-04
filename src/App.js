@@ -9,7 +9,7 @@ export function RequireAuth({ children }) {
     const user = localStorage.getItem('user');
 
     if (user === null) {
-        //TODO Navigate to login
+        window.location.href = '/login';
         return null;
     } else {
         return children;
