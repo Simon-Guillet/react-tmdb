@@ -1,6 +1,7 @@
 // Genral imports
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
+import Input from '../Input/Input';
 
 // Style imports
 import './LoginForm.css';
@@ -36,7 +37,6 @@ const LoginForm = ({handleSubmit}, {formErrors}) => {
         event.preventDefault();
         await handleSubmit(credentials);
     };
-    //TODO Add Credentials Inputs (With Input Component)
     return (
         <>
 
@@ -44,25 +44,25 @@ const LoginForm = ({handleSubmit}, {formErrors}) => {
 
                 <div className='credentials-and-password-container'>
 
-                    <div className='credentials-container'>
-                        <label htmlFor="login">Login</label>
-                        <input
-                            id="login"
-                            type="text"
-                            value={credentials.username}
-                            onChange={handleLoginChange}
-                        />
-                    </div>
+                    <Input
+                        id="login"
+                        label="Login"
+                        type="text"
+                        value={credentials.username}
+                        required={true}
+                        placeholder="Enter your login"
+                        handleChange={handleLoginChange}
+                        ></Input>
 
-                    <div className='password-container'>
-                        <label htmlFor="password">Password</label>
-                        <input
-                            id="password"
-                            type="password"
-                            value={credentials.password}
-                            onChange={handlePasswordChange}
-                        />
-                    </div>
+                    <Input
+                        id="password"
+                        label="Password"
+                        type="password"
+                        value={credentials.password}
+                        required={true}
+                        placeholder="Enter your password"
+                        handleChange={handlePasswordChange}
+                        ></Input>
 
                     <button
                         className='login-page-call-to-action'
