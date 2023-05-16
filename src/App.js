@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import Home from "./Page/Home/Home"
+import Tvs from "./Page/Tvs/Tvs"
 import Login from "./Page/Login/LoginPage"
 import "./App.css"
 import DetailsPage from "./Page/Details/Details"
@@ -27,6 +28,14 @@ function App() {
 					element={
 						<RequireAuth>
 							<Home />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="/tvs"
+					element={
+						<RequireAuth>
+							<Tvs />
 						</RequireAuth>
 					}
 				/>

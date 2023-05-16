@@ -11,6 +11,9 @@ const Header = (props) => {
 				<li>
 					<a href="/">Movies</a>
 				</li>
+				<li>
+					<a href="/tvs">TV Shows</a>
+				</li>
 			</ul>
 			<button
 				onClick={() => {
