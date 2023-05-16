@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import getDetails from "../../api/Details"
+import Header from "../../Component/Header/Header"
 
 // Style imports
 import "./Details.css"
@@ -28,18 +29,7 @@ const DetailsPage = () => {
 
 	return (
 		<div className="details-page">
-			<header>
-				<div className="title">Details page</div>
-				<button
-					onClick={() => {
-						localStorage.removeItem("user")
-						localStorage.removeItem("token")
-						window.location.href = "/login"
-					}}
-				>
-					Logout
-				</button>
-			</header>
+			<Header title="Details page" />
 			<main>
 				<div className="content">
 					<div className="movie-backdrop">

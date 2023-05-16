@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import getMovies from "../../api/Movies"
+import Header from "../../Component/Header/Header"
 
 // Style imports
 import "./Home.css"
@@ -37,21 +38,9 @@ const HomePage = () => {
 
 	return (
 		<div className="home-page">
-			<header>
-				<div className="title">Home page</div>
-				<button
-					onClick={() => {
-						localStorage.removeItem("user")
-						localStorage.removeItem("token")
-						window.location.href = "/login"
-					}}
-				>
-					Logout
-				</button>
-			</header>
+			<Header title="Home page" />
 			<main>
 				<div className="content">
-					<div className="content-title">Content</div>
 					<div className="list-movies">
 						{movies["hydra:member"] &&
 							movies["hydra:member"].map((movie) => (
@@ -74,8 +63,11 @@ const HomePage = () => {
 							))}
 					</div>
 					{console.log(movies)}
-					<button onClick={previous}>Previous</button>
-					<button onClick={next}>Next</button>
+					<div className="pagination">
+						<button onClick={previous}>Previous</button>
+						<div className="page-number">{page}</div>
+						<button onClick={next}>Next</button>
+					</div>
 				</div>
 			</main>
 		</div>
