@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react"
-import getDetails from "../../api/Details"
+import getSeriesDetails from "../../api/SeriesDetails"
 import Header from "../../Component/Header/Header"
 
 // Style imports
-import "./Details.css"
+import "./TvDetails.css"
 
-const DetailsPage = () => {
+const TvDetailsPage = () => {
 	const [details, setDetails] = useState([])
 	const [error, setError] = useState(null)
-	const [movieId, setMovieId] = useState(null)
+	const [tvId, setTvId] = useState(null)
 
 	useEffect(() => {
 		const url = window.location.pathname
-		const movieId = parseInt(url.split("/movie/")[1])
-		setMovieId(movieId)
-		getDetails(movieId).then((data) => {
+		const tvId = parseInt(url.split("/serie/")[1])
+		setTvId(tvId)
+		getSeriesDetails(tvId).then((data) => {
 			if (data.error) {
 				setError(data.error)
 			} else {
@@ -42,9 +42,9 @@ const DetailsPage = () => {
 							className="movie-backdrop-image"
 						/>
 					</div>
-					<h1 className="movie-title">{details.title}</h1>
+					<h1 className="movie-title">{details.name}</h1>
 					<div className="release-date">
-						Release date: {details.release_date}
+						Release date: {details.first_air_date}
 					</div>
 					<div className="vote-average">
 						Vote average: {details.vote_average}
@@ -58,4 +58,4 @@ const DetailsPage = () => {
 	)
 }
 
-export default DetailsPage
+export default TvDetailsPage

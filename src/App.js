@@ -4,6 +4,7 @@ import Tvs from "./Page/Tvs/Tvs"
 import Login from "./Page/Login/LoginPage"
 import "./App.css"
 import DetailsPage from "./Page/Details/Details"
+import TvDetailsPage from "./Page/TvDetails/TvDetails"
 
 export function RequireAuth({ children }) {
 	// Used to ensure the refreshToken is called once at a time
@@ -45,6 +46,14 @@ function App() {
 					element={
 						<RequireAuth>
 							<DetailsPage />
+						</RequireAuth>
+					}
+				/>
+				<Route
+					path="/serie/:id"
+					element={
+						<RequireAuth>
+							<TvDetailsPage />
 						</RequireAuth>
 					}
 				/>
