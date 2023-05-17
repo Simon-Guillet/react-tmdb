@@ -9,10 +9,24 @@ const Header = (props) => {
 			<div className="title">{props.title}</div>
 			<ul className="nav">
 				<li>
-					<a href="/">Movies</a>
+					{props.title === "Home page" ||
+					props.title === "Movie Details" ? (
+						<a href="/" aria-current="page">
+							Movies
+						</a>
+					) : (
+						<a href="/">Movies</a>
+					)}
 				</li>
 				<li>
-					<a href="/tvs">TV Shows</a>
+					{props.title === "Tv Shows" ||
+					props.title === "Series Details" ? (
+						<a href="/tvs" aria-current="page">
+							TV Shows
+						</a>
+					) : (
+						<a href="/tvs">TV Shows</a>
+					)}
 				</li>
 			</ul>
 			<button

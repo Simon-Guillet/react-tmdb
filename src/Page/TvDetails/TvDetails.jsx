@@ -29,7 +29,7 @@ const TvDetailsPage = () => {
 
 	return (
 		<div className="details-page">
-			<Header title="Details page" />
+			<Header title="Series Details" />
 			<main>
 				<div className="content">
 					<div className="movie-backdrop">

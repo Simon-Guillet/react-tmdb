@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import getSeries from "../../api/Series"
 import Header from "../../Component/Header/Header"
+import Card from "../../Component/Card/Card"
 
 // Style imports
 import "./Tvs.css"
@@ -38,28 +39,17 @@ const TvsPage = () => {
 
 	return (
 		<div className="home-page">
-			<Header title="Home page" />
+			<Header title="Tv Shows" />
 			<main>
 				<div className="content">
 					<div className="list-movies">
 						{series["hydra:member"] &&
 							series["hydra:member"].map((serie) => (
-								<a href={"/serie/" + serie.id} key={serie.id}>
-									<div className="movie-card" key={serie.id}>
-										<div className="movie-image">
-											<img
-												src={
-													"https://image.tmdb.org/t/p/w500" +
-													serie.poster_path
-												}
-												alt={serie.title}
-											/>
-										</div>
-										<div className="movie-title">
-											{serie.name}
-										</div>
-									</div>
-								</a>
+								<Card
+									media={serie}
+									type="serie"
+									key={serie.id}
+								/>
 							))}
 					</div>
 					{console.log(series)}

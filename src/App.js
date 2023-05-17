@@ -8,7 +8,6 @@ import TvDetailsPage from "./Page/TvDetails/TvDetails"
 
 export function RequireAuth({ children }) {
 	// Used to ensure the refreshToken is called once at a time
-	// TODO Get user from local storage
 	const user = localStorage.getItem("user")
 
 	if (user === null) {

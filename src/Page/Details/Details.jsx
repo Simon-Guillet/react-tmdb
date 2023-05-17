@@ -29,7 +29,7 @@ const DetailsPage = () => {
 
 	return (
 		<div className="details-page">
-			<Header title="Details page" />
+			<Header title="Movie Details" />
 			<main>
 				<div className="content">
 					<div className="movie-backdrop">

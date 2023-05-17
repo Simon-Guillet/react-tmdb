@@ -30,3 +30,7 @@ header a {
 	list-style-type: none;
 	margin-left: 20px;
 }
+
+.nav a[aria-current="page"] {
+	color: #61dafb;
+}

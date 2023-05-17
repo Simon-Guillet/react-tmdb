@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import getMovies from "../../api/Movies"
 import Header from "../../Component/Header/Header"
+import Card from "../../Component/Card/Card"
 
 // Style imports
 import "./Home.css"
@@ -44,22 +45,11 @@ const HomePage = () => {
 					<div className="list-movies">
 						{movies["hydra:member"] &&
 							movies["hydra:member"].map((movie) => (
-								<a href={"/movie/" + movie.id} key={movie.id}>
-									<div className="movie-card" key={movie.id}>
-										<div className="movie-image">
-											<img
-												src={
-													"https://image.tmdb.org/t/p/w500" +
-													movie.poster_path
-												}
-												alt={movie.title}
-											/>
-										</div>
-										<div className="movie-title">
-											{movie.title}
-										</div>
-									</div>
-								</a>
+								<Card
+									media={movie}
+									type="movie"
+									key={movie.id}
+								/>
 							))}
 					</div>
 					{console.log(movies)}
