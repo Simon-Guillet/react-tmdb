@@ -8,12 +8,10 @@ import "./TvDetails.css"
 const TvDetailsPage = () => {
 	const [details, setDetails] = useState([])
 	const [error, setError] = useState(null)
-	const [tvId, setTvId] = useState(null)
 
 	useEffect(() => {
 		const url = window.location.pathname
 		const tvId = parseInt(url.split("/serie/")[1])
-		setTvId(tvId)
 		getSeriesDetails(tvId).then((data) => {
 			if (data.error) {
 				setError(data.error)

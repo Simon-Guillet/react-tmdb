@@ -8,12 +8,10 @@ import "./Details.css"
 const DetailsPage = () => {
 	const [details, setDetails] = useState([])
 	const [error, setError] = useState(null)
-	const [movieId, setMovieId] = useState(null)
 
 	useEffect(() => {
 		const url = window.location.pathname
 		const movieId = parseInt(url.split("/movie/")[1])
-		setMovieId(movieId)
 		getDetails(movieId).then((data) => {
 			if (data.error) {
 				setError(data.error)

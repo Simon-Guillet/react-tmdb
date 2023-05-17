@@ -19,7 +19,9 @@ const Card = (props) => {
 						alt={props.media.title}
 					/>
 				</div>
-				<div className="movie-title">{props.media.title}</div>
+				<div className="movie-title">
+					{props.media.title || props.media.name}
+				</div>
 			</div>
 		</a>
 	)
