@@ -1,43 +1,50 @@
 import React from "react"
+import { Link, useNavigate } from "react-router-dom"
 
 // Style imports
 import "./Header.css"
 
 const Header = (props) => {
+	const navigate = useNavigate()
+
+	const handleLogout = () => {
+		localStorage.removeItem("user")
+		localStorage.removeItem("token")
+		navigate("/login")
+	}
+
 	return (
 		<header>
 			<div className="title">{props.title}</div>
 			<ul className="nav">
 				<li>
-					{props.title === "Home page" ||
-					props.title === "Movie Details" ? (
-						<a href="/" aria-current="page">
-							Movies
-						</a>
-					) : (
-						<a href="/">Movies</a>
-					)}
+					<Link
+						to="/"
+						aria-current={
+							props.title === "Home page" ||
+							props.title === "Movie Details"
+								? "page"
+								: undefined
+						}
+					>
+						Movies
+					</Link>
 				</li>
 				<li>
-					{props.title === "Tv Shows" ||
-					props.title === "Series Details" ? (
-						<a href="/tvs" aria-current="page">
-							TV Shows
-						</a>
-					) : (
-						<a href="/tvs">TV Shows</a>
-					)}
+					<Link
+						to="/tvs"
+						aria-current={
+							props.title === "Tv Shows" ||
+							props.title === "Series Details"
+								? "page"
+								: undefined
+						}
+					>
+						Tv Shows
+					</Link>
 				</li>
 			</ul>
-			<button
-				onClick={() => {
-					localStorage.removeItem("user")
-					localStorage.removeItem("token")
-					window.location.href = "/login"
-				}}
-			>
-				Logout
-			</button>
+			<button onClick={handleLogout}>Logout</button>
 		</header>
 	)
 }

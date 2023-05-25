@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom"
 import Home from "./Page/Home/Home"
 import Tvs from "./Page/Tvs/Tvs"
 import Login from "./Page/Login/LoginPage"
@@ -10,12 +10,11 @@ export function RequireAuth({ children }) {
 	// Used to ensure the refreshToken is called once at a time
 	const user = localStorage.getItem("user")
 
-	if (user === null) {
-		window.location.href = "/login"
-		return null
-	} else {
-		return children
+	if (!user) {
+		return <Navigate to="/login" />
 	}
+
+	return children
 }
 
 function App() {

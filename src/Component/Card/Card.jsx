@@ -1,12 +1,13 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 // Style imports
 import "./Card.css"
 
 const Card = (props) => {
 	return (
-		<a
-			href={"/" + props.type + "/" + props.media.id}
+		<Link
+			to={"/" + props.type + "/" + props.media.id}
 			className="movie-link"
 		>
 			<div className="movie-card" key={props.media.id}>
@@ -23,7 +24,7 @@ const Card = (props) => {
 					{props.media.title || props.media.name}
 				</div>
 			</div>
-		</a>
+		</Link>
 	)
 }
 

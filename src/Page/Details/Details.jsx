@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
 import getDetails from "../../api/Details"
 import Header from "../../Component/Header/Header"
 import Loader from "../../Component/Loader/Loader"
@@ -7,15 +8,14 @@ import Loader from "../../Component/Loader/Loader"
 import "./Details.css"
 
 const DetailsPage = () => {
+	const { id } = useParams()
 	const [details, setDetails] = useState([])
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
 
 	useEffect(() => {
-		const url = window.location.pathname
-		const movieId = parseInt(url.split("/movie/")[1])
 		setLoading(true)
-		getDetails(movieId)
+		getDetails(id)
 			.then((data) => {
 				if (data.error) {
 					setError(data.error)
@@ -26,7 +26,7 @@ const DetailsPage = () => {
 			.finally(() => {
 				setLoading(false)
 			})
-	}, [])
+	}, [id])
 
 	if (error) {
 		return <div>There was an error: {error.message}</div>
