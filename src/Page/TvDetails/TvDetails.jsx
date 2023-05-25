@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import getSeriesDetails from "../../api/SeriesDetails"
 import Header from "../../Component/Header/Header"
 import Loader from "../../Component/Loader/Loader"
@@ -60,6 +60,16 @@ const TvDetailsPage = () => {
 							Vote average: {details.vote_average}
 						</div>
 						<p className="movie-description">{details.overview}</p>
+						{details.id !== 1 && (
+							<Link to={`/serie/${details.id - 1}`}>
+								<button className="previous-button">
+									Previous
+								</button>
+							</Link>
+						)}
+						<Link to={`/serie/${details.id + 1}`}>
+							<button className="next-button">Next</button>
+						</Link>
 
 						{console.log(details)}
 					</div>

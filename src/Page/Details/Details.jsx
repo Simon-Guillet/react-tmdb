@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import getDetails from "../../api/Details"
 import Header from "../../Component/Header/Header"
 import Loader from "../../Component/Loader/Loader"
@@ -58,6 +58,16 @@ const DetailsPage = () => {
 							Vote average: {details.vote_average}
 						</div>
 						<p className="movie-description">{details.overview}</p>
+						{details.id !== 1 && (
+							<Link to={`/movie/${details.id - 1}`}>
+								<button className="previous-button">
+									Previous
+								</button>
+							</Link>
+						)}
+						<Link to={`/movie/${details.id + 1}`}>
+							<button className="next-movie">Next</button>
+						</Link>
 
 						{console.log(details)}
 					</div>
