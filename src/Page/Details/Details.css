@@ -5,3 +5,11 @@
 	object-position: center;
 	z-index: -1;
 }
+
+.genre span {
+	display: inline-block;
+	margin-right: 10px;
+	background-color: #61dafb;
+	padding: 5px 10px;
+	border-radius: 5px;
+}

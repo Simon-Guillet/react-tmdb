@@ -10,11 +10,14 @@ import "./Details.css"
 const DetailsPage = () => {
 	const { id } = useParams()
 	const [details, setDetails] = useState([])
+	const [genreDetails, setGenreDetails] = useState([])
 	const [error, setError] = useState(null)
 	const [loading, setLoading] = useState(true)
+	const [genreLoading, setGenreLoading] = useState(true)
 
 	useEffect(() => {
 		setLoading(true)
+		setGenreDetails([])
 		getDetails(id)
 			.then((data) => {
 				if (data.error) {
@@ -27,6 +30,32 @@ const DetailsPage = () => {
 				setLoading(false)
 			})
 	}, [id])
+
+	useEffect(() => {
+		setGenreLoading(true)
+		const fetchGenres = async () => {
+			if (details.genres) {
+				try {
+					const genreResponse = await Promise.all(
+						details.genres.map((genreLink) =>
+							fetch(`https://127.0.0.1:8000${genreLink}`)
+						)
+					)
+
+					const genreData = await Promise.all(
+						genreResponse.map((response) => response.json())
+					)
+
+					setGenreDetails(genreData)
+				} catch (error) {
+					console.log(error)
+				}
+			}
+			setGenreLoading(false)
+		}
+
+		fetchGenres()
+	}, [details])
 
 	if (error) {
 		return <div>There was an error: {error.message}</div>
@@ -57,6 +86,16 @@ const DetailsPage = () => {
 						<div className="vote-average">
 							Vote average: {details.vote_average}
 						</div>
+						{genreLoading ? (
+							<Loader />
+						) : (
+							<div className="genre">
+								Genre:
+								{genreDetails.map((genre) => (
+									<span key={genre.id}>{genre.name}</span>
+								))}
+							</div>
+						)}
 						<p className="movie-description">{details.overview}</p>
 						{details.id !== 1 && (
 							<Link to={`/movie/${details.id - 1}`}>
